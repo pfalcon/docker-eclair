@@ -1,0 +1,12 @@
+#!/bin/sh
+
+usage() {
+    echo "Usage: $0 SECONDS" >&2
+    exit 2
+}
+
+[ $# -eq 1 ] || usage
+
+seconds=$1
+
+sudo su "${ECLAIR_LICENSE_USER}" -c "\"${ECLAIR_TOP_DIR}/bin/eclair_licman\" -d 38199 -t \"${seconds}\" -s u"

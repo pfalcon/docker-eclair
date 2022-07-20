@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -ex
+sudo useradd "${ECLAIR_LICENSE_USER}" -u 2000 || :
+sudo mkdir -p /var/hasplm/update
+sudo chown eclair -R /var/hasplm
+sudo mkdir -p /etc/hasplm
+sudo chown eclair /etc/hasplm
+echo "serveraddr = ${ECLAIR_LICENSE_SERVER}" > /etc/hasplm/hasplm.ini
+cp -f "${ECLAIR_TOP_DIR}"/reqs/Sentinel_LDK_RTE/haspvlib*_113938.* /var/hasplm/update
+/usr/sbin/hasplmd_x86_64 -s

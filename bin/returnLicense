@@ -1,0 +1,10 @@
+#!/bin/sh
+
+usage() {
+    echo "Usage: $0" >&2
+    exit 2
+}
+
+[ $# -eq 0 ] || usage
+
+"${ECLAIR_TOP_DIR}/bin/eclair_licman" -c 38199

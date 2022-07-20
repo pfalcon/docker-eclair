@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -ex
+
+host=$(uname -n)
+socat "tcp-listen:${HASPLM_PORT},bind=${host},reuseaddr,fork" tcp:127.0.0.1:1947 > /dev/null 2>&1 &
+socat "tcp-listen:${ECLAIR_PORT},bind=${host},reuseaddr,fork" tcp:127.0.0.1:3786 > /dev/null 2>&1 &
