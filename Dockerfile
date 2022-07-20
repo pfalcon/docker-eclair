@@ -1,0 +1,43 @@
+FROM eclair-linaro-base
+
+# Can be overriden at build time
+ARG BUILDSLAVE_PASSWORD=buildslave
+
+COPY gcc-arm-11.2-2022.02-x86_64-aarch64-none-elf.tar.xz /tmp
+
+USER root
+RUN mkdir -p /opt
+RUN tar -xaf /tmp/gcc-arm-11.2-2022.02-x86_64-aarch64-none-elf.tar.xz -C /opt
+RUN rm -rf /var/hasplm/storage
+
+RUN apt-get -y -q --no-install-recommends install \
+    device-tree-compiler \
+    nano \
+    openssh-server
+
+
+COPY tf-*.install /tmp/
+COPY setup-sshd /usr/sbin/setup-sshd
+RUN set -e ;\
+   # Setup buildslave user for Jenkins
+    useradd -m -s /bin/bash buildslave ;\
+    echo "buildslave:$BUILDSLAVE_PASSWORD" | chpasswd ;\
+    echo 'buildslave ALL = NOPASSWD: ALL' > /etc/sudoers.d/jenkins ;\
+    chmod 0440 /etc/sudoers.d/jenkins ;\
+    mkdir -p /var/run/sshd ;\
+    bash -ex /tmp/tf-environment.install
+
+
+USER eclair
+
+COPY bin/ /opt/bugseng/bin
+
+ENV ECLAIR_LICENSE_SERVER flexnet.trustedfirmware.org
+
+EXPOSE 22
+#ENTRYPOINT sudo /usr/sbin/setup-sshd
+
+CMD sudo /usr/sbin/setup-sshd && \
+    forwardPorts && \
+    postStart && \
+    bash

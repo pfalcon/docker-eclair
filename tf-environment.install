@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -e
+
+env | grep ECLAIR_TOP_DIR >> /etc/environment
+env | grep ECLAIR_LICENSE_USER >> /etc/environment
+#env | grep TOOLS_DIR >> /etc/environment
+env | grep PATH >> /etc/environment
