@@ -7,4 +7,4 @@ docker run -it \
        -e HASPLM_PORT \
        -e ECLAIR_PORT \
        -v "$PWD/../trusted-firmware-a:/workspace/trusted-firmware-a" \
-       -it --rm eclair-linaro-tfa
+       -it --rm eclair-linaro-tfa $1

@@ -18,6 +18,7 @@ RUN apt-get -y -q --no-install-recommends install \
 
 COPY tf-*.install /tmp/
 COPY setup-sshd /usr/sbin/setup-sshd
+COPY entrypoint.sh /usr/sbin/entrypoint.sh
 RUN set -e ;\
    # Setup buildslave user for Jenkins
     useradd -m -s /bin/bash buildslave ;\
@@ -35,9 +36,5 @@ COPY bin/ /opt/bugseng/bin
 ENV ECLAIR_LICENSE_SERVER flexnet.trustedfirmware.org
 
 EXPOSE 22
-#ENTRYPOINT sudo /usr/sbin/setup-sshd
 
-CMD sudo /usr/sbin/setup-sshd && \
-    forwardPorts && \
-    postStart && \
-    bash
+ENTRYPOINT ["/usr/sbin/entrypoint.sh"]

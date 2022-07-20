@@ -11,4 +11,9 @@ export HOME=/home/buildslave
 }
 
 ssh-keygen -A
-/usr/sbin/sshd
+
+if [ "$1" = "interactive" ]; then
+    /usr/sbin/sshd
+else
+    /usr/sbin/sshd -D
+fi
