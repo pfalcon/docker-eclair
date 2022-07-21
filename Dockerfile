@@ -21,6 +21,9 @@ RUN apt-get -y -q --no-install-recommends install \
 COPY tf-*.install /tmp/
 COPY setup-sshd /usr/sbin/setup-sshd
 COPY entrypoint.sh /usr/sbin/entrypoint.sh
+
+ENV WORKSPACE "/home/buildslave/workspace/pfalcon-tf-a-priv"
+
 RUN set -e ;\
    # Setup buildslave user for Jenkins
     useradd -m -s /bin/bash buildslave ;\

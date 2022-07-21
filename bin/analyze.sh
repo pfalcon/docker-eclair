@@ -21,8 +21,6 @@ fi
 # Absolute path of the ECLAIR bin directory.
 ECLAIR_BIN_DIR="/opt/bugseng/eclair/bin"
 
-WORKSPACE="/home/buildslave/workspace/pfalcon-tf-a-priv/trusted-firmware-a"
-
 # Directory where this script resides: usually in a directory named "ECLAIR".
 SCRIPT_DIR="$(cd "$(dirname "$0")" ; echo "${PWD}")"
 
@@ -51,7 +49,7 @@ export ECLAIR_DIAGNOSTICS_OUTPUT="${ECLAIR_OUTPUT_DIR}/DIAGNOSTICS.txt"
 export ECLAIR_PROJECT_NAME="TF_A_${PLAT}"
 # All paths mentioned in ECLAIR reports that are below this directory
 # will be presented as relative to ECLAIR_PROJECT_ROOT.
-export ECLAIR_PROJECT_ROOT="${WORKSPACE}"
+export ECLAIR_PROJECT_ROOT="${WORKSPACE}/trusted-firmware-a"
 
 # Erase and recreate the output directory and the data directory.
 rm -rf "${ECLAIR_OUTPUT_DIR}"
