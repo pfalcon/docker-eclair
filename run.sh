@@ -6,5 +6,5 @@ docker run -it \
        -p 2222:22 \
        -e HASPLM_PORT \
        -e ECLAIR_PORT \
-       -v "$PWD/../trusted-firmware-a:/workspace/trusted-firmware-a" \
+       -v "$PWD/../trusted-firmware-a:/home/buildslave/workspace/pfalcon-tf-a-priv/trusted-firmware-a" \
        -it --rm eclair-linaro-tfa $1
