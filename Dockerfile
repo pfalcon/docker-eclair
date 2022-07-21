@@ -13,6 +13,7 @@ RUN rm -rf /var/hasplm/storage
 RUN apt-get -y -q --no-install-recommends install \
     device-tree-compiler \
     nano \
+    openjdk-8-jre-headless \
     openssh-server
 
 
