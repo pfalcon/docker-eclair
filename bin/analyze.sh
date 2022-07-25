@@ -76,3 +76,9 @@ JENKINS_XML="${ECLAIR_OUTPUT_DIR}/../jenkins.xml"
     "-db='${PROJECT_ECD}'" \
     "-eval_file='${SCRIPT_DIR}/report.ecl'" \
     "-reports_jenkins='${JENKINS_XML}'"
+
+${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -summary_html=${ECLAIR_OUTPUT_DIR}/../summary_html
+${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -full_html=${ECLAIR_OUTPUT_DIR}/../full_html
+
+${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -summary_txt=${ECLAIR_OUTPUT_DIR}/../summary_txt
+${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -full_txt=${ECLAIR_OUTPUT_DIR}/../full_txt
