@@ -77,7 +77,20 @@ JENKINS_XML="${ECLAIR_OUTPUT_DIR}/../jenkins.xml"
     "-eval_file='${SCRIPT_DIR}/report.ecl'" \
     "-reports_jenkins='${JENKINS_XML}'"
 
+
+function make_self_contained() {
+    dir=$1
+    mkdir -p $dir/lib
+
+    cp -r /opt/bugseng/eclair-3.12.0/lib/html $dir/lib
+
+    for f in $dir/*.html; do
+        sed -i.bak s@/opt/bugseng/eclair-3.12.0/@@ $f
+    done
+}
+
 ${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -summary_html=${ECLAIR_OUTPUT_DIR}/../summary_html
+make_self_contained ${ECLAIR_OUTPUT_DIR}/../summary_html
 ${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -full_html=${ECLAIR_OUTPUT_DIR}/../full_html
 
 ${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -summary_txt=${ECLAIR_OUTPUT_DIR}/../summary_txt
