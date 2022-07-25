@@ -15,7 +15,8 @@ RUN apt-get -y -q --no-install-recommends install \
     git \
     nano \
     openjdk-8-jre-headless \
-    openssh-server
+    openssh-server \
+    python3
 
 
 COPY tf-*.install /tmp/
