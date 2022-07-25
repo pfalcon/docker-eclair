@@ -84,14 +84,13 @@ function make_self_contained() {
 
     cp -r /opt/bugseng/eclair-3.12.0/lib/html $dir/lib
 
-    for f in $dir/*.html; do
-        sed -i.bak s@/opt/bugseng/eclair-3.12.0/@@ $f
-    done
+    find -name '*.html' | xargs -d '\n' -n1 sed -i.bak s@/opt/bugseng/eclair-3.12.0/@@
 }
 
 ${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -summary_html=${ECLAIR_OUTPUT_DIR}/../summary_html
 make_self_contained ${ECLAIR_OUTPUT_DIR}/../summary_html
 ${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -full_html=${ECLAIR_OUTPUT_DIR}/../full_html
+make_self_contained ${ECLAIR_OUTPUT_DIR}/../full_html
 
 ${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -summary_txt=${ECLAIR_OUTPUT_DIR}/../summary_txt
 ${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -full_txt=${ECLAIR_OUTPUT_DIR}/../full_txt
