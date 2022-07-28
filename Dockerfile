@@ -12,7 +12,8 @@ RUN mkdir -p /opt
 RUN tar -xaf /tmp/gcc-arm-11.2-2022.02-x86_64-aarch64-none-elf.tar.xz -C /opt
 RUN rm -rf /var/hasplm/storage
 
-RUN apt-get -y -q --no-install-recommends install \
+RUN apt-get update && \
+    apt-get -y -q --no-install-recommends install \
     device-tree-compiler \
     git \
     nano \
