@@ -2,6 +2,8 @@ FROM eclair-linaro-base
 
 # Can be overriden at build time
 ARG BUILDSLAVE_PASSWORD=buildslave
+ENV ECLAIR_LICENSE_SERVER flexnet.trustedfirmware.org
+ENV WORKSPACE "/home/buildslave/workspace/pfalcon-tf-a-eclair"
 
 COPY gcc-arm-11.2-2022.02-x86_64-aarch64-none-elf.tar.xz /tmp
 
@@ -18,12 +20,9 @@ RUN apt-get -y -q --no-install-recommends install \
     openssh-server \
     python3
 
-
 COPY tf-*.install /tmp/
 COPY setup-sshd /usr/sbin/setup-sshd
 COPY entrypoint.sh /usr/sbin/entrypoint.sh
-
-ENV WORKSPACE "/home/buildslave/workspace/pfalcon-tf-a-priv"
 
 RUN set -e ;\
    # Setup buildslave user for Jenkins
@@ -38,8 +37,6 @@ RUN set -e ;\
 USER eclair
 
 COPY bin/ /opt/bugseng/bin
-
-ENV ECLAIR_LICENSE_SERVER flexnet.trustedfirmware.org
 
 EXPOSE 22
 
