@@ -101,3 +101,5 @@ do_analyze
 
 ECLAIR_OUTPUT_DIR="${WORKSPACE}/ECLAIR/out"
 do_analyze
+
+diff -ur ${WORKSPACE}/ECLAIR_BASE/summary_txt/ ${WORKSPACE}/ECLAIR/summary_txt/ > ${WORKSPACE}/ECLAIR/summary_txt.diff
