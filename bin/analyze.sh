@@ -70,10 +70,6 @@ find "${ECLAIR_DATA_DIR}" -maxdepth 1 -name "FRAME.*.ecb" \
           "-create_db='${PROJECT_ECD}'" \
           -load=/dev/stdin
 
-# Create the Jenkins reports file.
-JENKINS_XML="${ECLAIR_OUTPUT_DIR}/../jenkins.xml"
-${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -reports_jenkins=${JENKINS_XML}
-
 
 function make_self_contained() {
     dir=$1
@@ -91,3 +87,7 @@ make_self_contained ${ECLAIR_OUTPUT_DIR}/../full_html
 
 ${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -summary_txt=${ECLAIR_OUTPUT_DIR}/../summary_txt
 ${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -full_txt=${ECLAIR_OUTPUT_DIR}/../full_txt
+
+# Create the Jenkins reports file.
+JENKINS_XML="${ECLAIR_OUTPUT_DIR}/../jenkins.xml"
+${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -reports_jenkins=${JENKINS_XML}
