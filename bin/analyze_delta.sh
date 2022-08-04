@@ -100,6 +100,14 @@ ECLAIR_OUTPUT_DIR="${WORKSPACE}/ECLAIR_BASE/out"
 do_analyze
 
 ECLAIR_OUTPUT_DIR="${WORKSPACE}/ECLAIR/out"
+
+if [ -n "${GERRIT_REFSPEC}" ]; then
+    (
+        cd ${ECLAIR_PROJECT_ROOT}
+        git fetch https://review.trustedfirmware.org/TF-A/trusted-firmware-a ${GERRIT_REFSPEC} && git checkout FETCH_HEAD
+    )
+fi
+
 do_analyze
 
 diff -I '^Timestamp:' -x frames.txt -x files.txt -x explain.txt \
