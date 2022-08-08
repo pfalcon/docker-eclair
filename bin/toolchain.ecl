@@ -7,5 +7,7 @@
 -config=STD.macident,+behavior={c99, GCC, 4096}
 -config=STD.stdtypes,+behavior={c99, GCC, "unsigned long long||long long"}
 
+-config=STD.charsmem,+behavior={c99, GCC, utf8}
+-config=STD.bytebits,+behavior={c99, GCC, 8}
 -config=STD.freesten,+behavior={c99, GCC, specified}
 -config=STD.freestnd,+behavior={c99, GCC, specified}
