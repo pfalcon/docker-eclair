@@ -11,7 +11,10 @@
 -enable=B.EXPLAIN
 
 -doc_begin="See https://developer.trustedfirmware.org/w/tf_a/tf-a-misra-analysis/"
--enable=MC3R1.D1.1
+# "Any implementation-defined behaviour on which the output of the program depends shall be documented and understood."
+# This requires configuring gazillion of generic parameters, where relation is mostly
+# not configured == warning, configured == no warning. Return to this later.
+#-enable=MC3R1.D1.1
 -enable=MC3R1.D2.1
 -enable=MC3R1.D4.1
 -enable=MC3R1.D4.2
