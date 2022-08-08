@@ -17,7 +17,7 @@ RUN apt-get update && \
     device-tree-compiler \
     git \
     nano \
-    openjdk-8-jre-headless \
+    openjdk-11-jre-headless \
     openssh-server \
     python3
 
