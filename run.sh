@@ -7,4 +7,4 @@ docker run -it \
        -e HASPLM_PORT \
        -e ECLAIR_PORT \
        -v "$PWD/../trusted-firmware-a:/home/buildslave/workspace/pfalcon-tf-a-eclair/trusted-firmware-a" \
-       -it --rm eclair-linaro-tfa $1
+       -it --rm 987685672616.dkr.ecr.us-east-1.amazonaws.com/misra:eclair-linaro-tfa $1
