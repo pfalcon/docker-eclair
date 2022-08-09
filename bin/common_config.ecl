@@ -3,7 +3,8 @@
 -eval_file=public_APIs.ecl
 -public_files+=api:public
 
--source_files={hide, "^include/lib/libc/.*$"}
+-doc="Treat LIBC headers as external, as they have many peculiar declarations leading to spurious warnings."
+-file_tag+={external, "^include/lib/libc/.*$"}
 
 -doc="FIXME: cite the compiler manual section describing support for __asm__."
 -config=MC3R1.R1.2,reports+={hide,"category(^STD.tokenext/__asm__$)"}
