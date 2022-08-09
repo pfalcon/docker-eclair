@@ -20,6 +20,8 @@
 -enable=MC3R1.D4.2
 -enable=MC3R1.D4.3
 -enable=MC3R1.D4.4
+-doc="'Information' reports apply to #ifdef'ed code, don't show real problems, just add noise."
+-config=MC3R1.D4.4,reports+={hide,"kind(information)"}
 -enable=MC3R1.D4.5
 -enable=MC3R1.D4.7
 -enable=MC3R1.D4.10
