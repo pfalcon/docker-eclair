@@ -80,13 +80,14 @@ function do_analyze() {
         relativize_urls.py $dir
     }
 
-    ${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -summary_html=${ECLAIR_OUTPUT_DIR}/../summary_html
-    make_self_contained ${ECLAIR_OUTPUT_DIR}/../summary_html
     ${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -full_html=${ECLAIR_OUTPUT_DIR}/../full_html
     make_self_contained ${ECLAIR_OUTPUT_DIR}/../full_html
 
     ${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -summary_txt=${ECLAIR_OUTPUT_DIR}/../summary_txt
     ${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -full_txt=${ECLAIR_OUTPUT_DIR}/../full_txt
+    # summary_txt contains just a single report file not present in full_txt, move it there and be done with it.
+    mv ${ECLAIR_OUTPUT_DIR}/../summary_txt/by_service.txt ${ECLAIR_OUTPUT_DIR}/../full_txt/
+    rm -rf ${ECLAIR_OUTPUT_DIR}/../summary_txt
 
     # Create the Jenkins reports file.
     JENKINS_XML="${ECLAIR_OUTPUT_DIR}/../jenkins.xml"
