@@ -117,9 +117,8 @@ diff -I '^Timestamp:' -x frames.txt -x files.txt -x explain.txt \
 
 
 (
-cd ${ECLAIR_OUTPUT_DIR}/..
-${ECLAIR_BIN_DIR}/eclair_report -diff_criteria=fingerprint -diff_full_txt=../ECLAIR_BASE/out/PROJECT.ecd,out/PROJECT.ecd
+${ECLAIR_BIN_DIR}/eclair_report -diff_criteria=fingerprint -diff_full_txt=ECLAIR_BASE/out/PROJECT.ecd,ECLAIR/out/PROJECT.ecd
 ls -l diff_output
 
-xz ../ECLAIR_BASE/out/PROJECT.ecd out/PROJECT.ecd
+xz ECLAIR_BASE/out/PROJECT.ecd ECLAIR/out/PROJECT.ecd
 )
