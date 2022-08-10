@@ -80,8 +80,6 @@ function make_self_contained() {
     relativize_urls.py $dir
 }
 
-${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -summary_html=${ECLAIR_OUTPUT_DIR}/../summary_html
-make_self_contained ${ECLAIR_OUTPUT_DIR}/../summary_html
 ${ECLAIR_BIN_DIR}/eclair_report -db=${PROJECT_ECD} -full_html=${ECLAIR_OUTPUT_DIR}/../full_html
 make_self_contained ${ECLAIR_OUTPUT_DIR}/../full_html
 
