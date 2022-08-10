@@ -8,6 +8,7 @@
 
 -doc="TODO"
 -file_tag+={external, "^_ROOT/dev/pipe/.*$"}
+-file_tag+={external, "^/dev/pipe/.*$"}
 
 -doc="FIXME: cite the compiler manual section describing support for __asm__."
 -config=MC3R1.R1.2,reports+={hide,"category(^STD.tokenext/__asm__$)"}
