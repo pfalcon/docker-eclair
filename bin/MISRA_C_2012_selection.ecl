@@ -7,6 +7,7 @@
 -config=B.REPORT.ECB,output=join_paths(data_dir,"FRAME.@FRAME@.ecb")
 -config=B.REPORT.ECB,preprocessed=show
 -config=B.REPORT.ECB,macros=10
+-config=B.REPORT.ECB,tags=show
 
 -enable=B.EXPLAIN
 
