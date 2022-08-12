@@ -32,3 +32,5 @@
 
 -doc="Unless specified otherwise, a function is assumed to not save/preserve the pointers received as arguments."
 -default_call_properties+="taken()"
+
+-remap_rtag={safe, hide}
