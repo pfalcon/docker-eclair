@@ -36,7 +36,7 @@
 
 -enable=MC3R1.R2.1
 -doc="When logging is disabled, no_tf_log() is expected to contain special unreachable code pattern."
--config=MC3R1.R2.1,reports+={safe,"all_area(all_loc(macro(^no_tf_log$)))"}
+-config=MC3R1.R2.1,reports+={safe,"any_area(all_loc(macro(^no_tf_log$)))"}
 
 -enable=MC3R1.R2.2
 -enable=MC3R1.R2.3
