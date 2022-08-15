@@ -34,3 +34,5 @@
 -default_call_properties+="taken()"
 
 -remap_rtag={safe, hide}
+# Hide known TODOs for now
+-remap_rtag={todo, hide}
