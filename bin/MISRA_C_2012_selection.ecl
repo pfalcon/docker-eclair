@@ -33,8 +33,10 @@
 -enable=MC3R1.R1.1
 
 -enable=MC3R1.R1.2
--doc="TODO: Contains bare instances of __builtin_offsetof, should be wrapped in macro"
+-doc_begin="TODO: Contains bare instances of __builtin_offsetof, should be wrapped in macro"
 -config=MC3R1.R1.2,reports+={todo,"all_area(all_loc(^include/drivers/console_assertions.h$))"}
+-config=MC3R1.R1.2,reports+={todo,"all_area(all_loc(^include/common/ep_info.h$))"}
+-doc_end
 
 -enable=MC3R1.R1.3
 
