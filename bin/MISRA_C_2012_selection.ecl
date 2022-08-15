@@ -43,6 +43,8 @@
 -enable=MC3R1.R2.1
 -doc="When logging is disabled, no_tf_log() is expected to contain special unreachable code pattern."
 -config=MC3R1.R2.1,reports+={safe,"any_area(all_loc(macro(^no_tf_log$)))"}
+-doc="Silence warning about unreachable null statement. TODO: Better wrap macro in do {...} while (0) pattern."
+-config=MC3R1.R2.1,reports+={safe,"any_area(kind(culprit)&&^null statement is unreachable$)"}
 
 -enable=MC3R1.R2.2
 -enable=MC3R1.R2.3
