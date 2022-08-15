@@ -66,7 +66,11 @@
 -enable=MC3R1.R8.8
 -enable=MC3R1.R8.9
 -enable=MC3R1.R8.10
+
 -enable=MC3R1.R8.11
+-doc="This macro intended to deal with special linker-defined symbols like __TEXT_START__"
+-config=MC3R1.R8.11,reports+={safe,"all_area(all_loc(macro(^IMPORT_SYM$)))"}
+
 -enable=MC3R1.R8.12
 -enable=MC3R1.R8.13
 -enable=MC3R1.R8.14
