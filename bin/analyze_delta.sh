@@ -97,19 +97,17 @@ function do_analyze() {
 }
 
 # Directory where to put all ECLAIR output and temporary files.
-ECLAIR_OUTPUT_DIR="${WORKSPACE}/ECLAIR_BASE/out"
+ECLAIR_OUTPUT_DIR="${WORKSPACE}/ECLAIR/out"
 
 do_analyze
 
-ECLAIR_OUTPUT_DIR="${WORKSPACE}/ECLAIR/out"
+ECLAIR_OUTPUT_DIR="${WORKSPACE}/ECLAIR_BASE/out"
 
-if [ -n "${GERRIT_REFSPEC}" ]; then
-    (
-        cd ${ECLAIR_PROJECT_ROOT}
-        git fetch https://review.trustedfirmware.org/TF-A/trusted-firmware-a ${GERRIT_REFSPEC} && git checkout FETCH_HEAD
-        git log --oneline -n5
-    )
-fi
+(
+    cd ${ECLAIR_PROJECT_ROOT}
+    git checkout HEAD^
+    git log --oneline -n5
+)
 
 do_analyze
 
