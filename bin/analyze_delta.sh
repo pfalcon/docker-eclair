@@ -107,6 +107,7 @@ if [ -n "${GERRIT_REFSPEC}" ]; then
     (
         cd ${ECLAIR_PROJECT_ROOT}
         git fetch https://review.trustedfirmware.org/TF-A/trusted-firmware-a ${GERRIT_REFSPEC} && git checkout FETCH_HEAD
+        git log --oneline -n5
     )
 fi
 
