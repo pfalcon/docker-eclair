@@ -121,3 +121,5 @@ ls -l diff_output
 
 xz ECLAIR_BASE/out/PROJECT.ecd ECLAIR/out/PROJECT.ecd
 )
+
+eclair_diff_report.py diff_output > misra_delta.txt
