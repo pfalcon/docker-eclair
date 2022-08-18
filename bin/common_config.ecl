@@ -3,8 +3,10 @@
 -eval_file=public_APIs.ecl
 -public_files+=api:public
 
--doc="Treat LIBC headers as external, as they have many peculiar declarations leading to spurious warnings."
+-doc_begin="Treat LIBC as external, as they have many peculiar declarations leading to spurious warnings."
 -file_tag+={external, "^include/lib/libc/.*$"}
+-file_tag+={external, "^lib/libc/.*$"}
+-doc_end
 
 -file_tag+={external, "^lib/compiler-rt/.*$"}
 -file_tag+={external, "^include/lib/libfdt/.*$"}
