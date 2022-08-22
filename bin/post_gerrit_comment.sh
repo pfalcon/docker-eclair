@@ -13,6 +13,8 @@ if echo "${GERRIT_PROJECT}" | grep -q sandbox; then
 fi
 
 if [ $should_post_comment -eq 1 ]; then
+    mkdir -p ~/.ssh/
+    ssh-keyscan -H -p 29418 $GERRIT_HOST >> ~/.ssh/known_hosts
     ssh -p 29418 -i "$CI_BOT_KEY" "$CI_BOT_USERNAME@$GERRIT_HOST" gerrit \
         review  "$GERRIT_CHANGE_NUMBER,$GERRIT_PATCHSET_NUMBER" \
         --message "'$(cat misra_delta.txt)'"
