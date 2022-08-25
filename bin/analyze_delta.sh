@@ -120,6 +120,12 @@ diff -I '^Timestamp:' -x frames.txt -x files.txt -x explain.txt \
 ${ECLAIR_BIN_DIR}/eclair_report -diff_criteria=fingerprint -diff_full_txt=ECLAIR_BASE/out/PROJECT.ecd,ECLAIR/out/PROJECT.ecd
 ls -l diff_output
 
+eclair_report -db=ECLAIR_BASE/out/PROJECT.ecd -sel_tag_glob=new,diff,missing -full_html=resolved_issues_html
+make_self_contained resolved_issues_html
+
+eclair_report -db=ECLAIR/out/PROJECT.ecd -sel_tag_glob=new,diff,missing -full_html=new_issues_html
+make_self_contained new_issues_html
+
 xz ECLAIR_BASE/out/PROJECT.ecd ECLAIR/out/PROJECT.ecd
 )
 
