@@ -130,3 +130,16 @@ xz ECLAIR_BASE/out/PROJECT.ecd ECLAIR/out/PROJECT.ecd
 )
 
 eclair_diff_report.py diff_output > misra_delta.txt
+
+
+cat <<EOF >index.html
+<html>
+<body>
+<h1>MISRA Delta reports for the patch</h1>
+<li><a href="misra_delta.txt">Cumulative TXT report</a>
+<li><a href="diff_output/">Per MISRA rule TXT reports</a>
+<li><a href="new_issues_html/by_service.html#first_file/service&kind">New issues, groupped per file changed (HTML).</a>
+<li><a href="resolved_issues_html/by_service.html#first_file/service&kind">Resolved issues, groupped per file changed (HTML).</a>
+</body>
+</html>
+EOF
