@@ -1,4 +1,71 @@
-FROM eclair-linaro-base
+#
+# Copyright (c) 2021-2022 BUGSENG srl. All rights reserved.
+# Copyright (c) 2022 Arm Limited. All rights reserved.
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+FROM ubuntu:22.04
+
+ARG EclairVersion=3.12.0
+ARG EclairVariant=MC23P1-l64P
+
+ENV ECLAIR_LICENSE_SERVER flexnet.trustedfirmware.org
+ENV ECLAIR_LICENSE_USER unguessable
+
+ARG SentinelVersion=8.23.1
+
+ARG SetupDir=/tmp/eclair-${EclairVersion}-${EclairVariant}
+ARG SetupFile=ECLAIR_${EclairVersion}-${EclairVariant}_Setup.run
+
+ENV ECLAIR_TOP_DIR /opt/bugseng/eclair-${EclairVersion}
+ENV DEBIAN_FRONTEND noninteractive
+ENV LANG C.UTF-8
+
+COPY ${SetupFile} /tmp
+
+RUN apt-get update
+
+RUN apt-get install -y -q tzdata && \
+    ln -fs /usr/share/zoneinfo/Europe/Rome /etc/localtime && \
+    dpkg-reconfigure -f noninteractive tzdata
+
+RUN apt-get -y -q install xz-utils apt-utils socat
+
+RUN cd /tmp && \
+    ./${SetupFile} --keep --noexec
+
+RUN cd /tmp && \
+    tar xzf "${SetupDir}/reqs/Sentinel_LDK_RTE/aksusbd-${SentinelVersion}.tar.gz" && \
+    cd aksusbd-${SentinelVersion} && \
+    ./dinst && \
+    cd .. && \
+    rm -rf aksusbd-${SentinelVersion}
+
+RUN cd ${SetupDir} && \
+    mkdir -m 755 -p "${ECLAIR_TOP_DIR}" && \
+    mv * "${ECLAIR_TOP_DIR}" && \
+    cd "${ECLAIR_TOP_DIR}/.." && \
+    ln -sf "$(basename "${ECLAIR_TOP_DIR}")" eclair && \
+    "${ECLAIR_TOP_DIR}/bin/postinstall.sh"
+
+RUN rm -rf ${SetupDir} && \
+    rm -rf /tmp/${SetupFile}
+
+ENV PATH ${PATH}:${ECLAIR_TOP_DIR}/../bin:${ECLAIR_TOP_DIR}/bin
+
+RUN apt-get install -y -q sudo && \
+    useradd -m eclair -s /bin/bash && \
+    echo "eclair ALL=NOPASSWD: ALL" > /etc/sudoers.d/eclair
+
+# Add here the commands to install your build tools
+RUN apt-get -y -q install g++-10-arm-linux-gnueabi cmake ninja-build
+
+USER eclair
+
+CMD forwardPorts && \
+    postStart && \
+    bash
+
 
 # Can be overriden at build time
 ARG BUILDSLAVE_PASSWORD=buildslave
