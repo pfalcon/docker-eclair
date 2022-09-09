@@ -73,6 +73,7 @@ RUN apt-get update && \
     apt-get -y -q --no-install-recommends install \
     device-tree-compiler \
     git \
+    make \
     nano \
     openjdk-11-jre-headless \
     openssh-server \
