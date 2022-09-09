@@ -57,15 +57,6 @@ RUN apt-get install -y -q sudo && \
     useradd -m eclair -s /bin/bash && \
     echo "eclair ALL=NOPASSWD: ALL" > /etc/sudoers.d/eclair
 
-# Add here the commands to install your build tools
-RUN apt-get -y -q install g++-10-arm-linux-gnueabi cmake ninja-build
-
-USER eclair
-
-CMD forwardPorts && \
-    postStart && \
-    bash
-
 
 # Can be overriden at build time
 ARG BUILDSLAVE_PASSWORD=buildslave
@@ -74,7 +65,6 @@ ENV WORKSPACE "/home/buildslave/workspace/pfalcon-tf-a-eclair"
 
 COPY gcc-arm-11.2-2022.02-x86_64-aarch64-none-elf.tar.xz /tmp
 
-USER root
 RUN mkdir -p /opt
 RUN tar -xaf /tmp/gcc-arm-11.2-2022.02-x86_64-aarch64-none-elf.tar.xz -C /opt
 RUN rm -rf /var/hasplm/storage
